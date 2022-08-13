@@ -18,12 +18,14 @@
   height: 40px;
   padding: 5px;
   font-size: 18px;
+  outline: none;
 }
 
 .auth input[type='submit'] {
   margin-top: 20px;
   width: 100%;
   font-size: 17px;
+  outline: none;
 }
 
 .auth div {
