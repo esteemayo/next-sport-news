@@ -1,4 +1,3 @@
-import axios from 'axios';
 import Link from 'next/link';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
@@ -9,6 +8,7 @@ import TextArea from '@/components/TextArea';
 import styles from '@/styles/Form.module.css';
 import FormInput from '@/components/FormInput';
 import { createSport } from '@/services/sportService';
+import { uploadImage } from '@/services/imageService';
 
 const initialState = {
   name: '',
@@ -42,10 +42,7 @@ const Add = () => {
     data.append('upload_preset', 'sports');
 
     try {
-      const res = await axios.post(
-        'https://api.cloudinary.com/v1_1/learnhowtocode/image/upload',
-        data
-      );
+      const res = await uploadImage(data);
 
       const { url } = res.data;
 
