@@ -13,6 +13,11 @@
   height: 150px;
 }
 
+.form input,
+.form textarea {
+  outline: none;
+}
+
 .form input[type='submit'] {
   display: block;
   width: 100%;
