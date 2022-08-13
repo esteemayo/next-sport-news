@@ -77,6 +77,7 @@ const Add = () => {
                 type={type}
                 name={name}
                 label={label}
+                className={type === 'file' ? styles.file : null}
                 onChange={({ target }) =>
                   type === 'file'
                     ? setFile(target.files[0])
