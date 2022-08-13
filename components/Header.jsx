@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import Search from './Search';
 import styles from '@/styles/Header.module.css';
 import { setLogout } from '@/features/auth/authSlice';
 
@@ -29,6 +30,7 @@ const Header = () => {
           Sport News
         </Link>
       </div>
+      <Search />
       <nav>
         <ul>
           <li>
