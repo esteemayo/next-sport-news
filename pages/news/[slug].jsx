@@ -19,8 +19,7 @@ const SingleNews = ({ news }) => {
       <p>
         <FaUser /> Posted By: <strong>{news.user.username}</strong>
       </p>
-      <h1></h1>
-      {/* {news.image && ( */}
+      <h1>{news.name}</h1>
       <div className={styles.image}>
         <Image
           src={news.image ? news.image : '/images/hero.jpg'}
@@ -29,7 +28,6 @@ const SingleNews = ({ news }) => {
           alt={news.name}
         />
       </div>
-      {/* )} */}
       <p>{news.detail}</p>
     </div>
   );
