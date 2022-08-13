@@ -28,12 +28,11 @@ export default function Home({ news }) {
 }
 
 export const getStaticProps = async () => {
-  const limit = 5;
-  const { data } = await getSports(limit);
+  const { data } = await getSports();
 
   return {
     props: {
-      news: data.sports,
+      news: data.sports.slice(0, 5),
     },
     revalidate: 1,
   };
