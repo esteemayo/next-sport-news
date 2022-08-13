@@ -5,7 +5,6 @@ import NewsItem from '@/components/NewsItem';
 import { getSports } from '@/services/sportService';
 
 export default function Home({ news }) {
-  console.log(news);
   return (
     <div>
       <Head>
