@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 
-const FormInput = ({ name, label, ...rest }) => {
+const FormInput = ({ name, label, className, ...rest }) => {
   return (
-    <div>
+    <div className={className}>
       <label htmlFor={name}>{label}</label>
       <input {...rest} name={name} id={name} />
     </div>
