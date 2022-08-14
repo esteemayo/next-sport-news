@@ -8,7 +8,15 @@ const sportUrl = (sportId) => {
 
 export const getSports = () => http.get(apiEndpoint);
 
-export const getUserSports = () => http.get(`${apiEndpoint}/user-sports`);
+export const searchSport = (query) =>
+  http.get(`${apiEndpoint}/search?searchQuery=${query}`);
+
+export const getUserSports = (accessToken) =>
+  http.get(`${apiEndpoint}/user-sports`, {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
 
 export const getSportById = (sportId) => http.get(sportUrl(sportId));
 
