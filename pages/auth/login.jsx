@@ -5,7 +5,9 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { loginInputs } from '../../data';
 import Spinner from '@/components/Spinner';
+import FormInput from '@/components/FormInput';
 import styles from '@/styles/AuthForm.module.css';
 import { loginUser, reset } from '@/features/auth/authSlice';
 
@@ -47,22 +49,19 @@ const Login = () => {
           <FaUser /> Login
         </h1>
         <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor='email'>Email</label>
-            <input
-              id='email'
-              type='email'
-              onChange={({ target }) => setEmail(target.value)}
-            />
-          </div>
-          <div>
-            <label htmlFor='password'>Password</label>
-            <input
-              id='password'
-              type='password'
-              onChange={({ target }) => setPassword(target.value)}
-            />
-          </div>
+          {loginInputs.map((input) => {
+            const { id, type, name, label, placeholder } = input;
+            return (
+              <FormInput
+                key={id}
+                type={type}
+                name={name}
+                label={label}
+                placeholder={placeholder}
+                onChange={({ target }) => setEmail(target.value)}
+              />
+            );
+          })}
           <input type='submit' value='Login' className='btn' />
         </form>
         <p>
