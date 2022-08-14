@@ -2,13 +2,13 @@ import jwtDecode from 'jwt-decode';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import * as authAPI from '@/services/authService';
-import { register } from '@/services/userService';
+import { nextRegister } from '@/services/userService';
 
 export const registerUser = createAsyncThunk(
   'auth/register',
   async ({ credentials, toast }, { rejectWithValue }) => {
     try {
-      const { data } = await register({ ...credentials });
+      const { data } = await nextRegister({ ...credentials });
       toast.success('Your account has been successfully created');
       return data;
     } catch (err) {
@@ -21,7 +21,7 @@ export const loginUser = createAsyncThunk(
   'auth/login',
   async ({ credentials, toast }, { rejectWithValue }) => {
     try {
-      const { data } = await authAPI.login({ ...credentials });
+      const { data } = await authAPI.nextLogin({ ...credentials });
       toast.success('You are successfully logged in');
       return data;
     } catch (err) {
