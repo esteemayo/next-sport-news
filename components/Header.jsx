@@ -50,9 +50,6 @@ const Header = () => {
                   Dashboard
                 </Link>
               </li>
-              <button className='btn-secondary' onClick={handleLogout}>
-                Logout
-              </button>
             </>
           ) : (
             <>
@@ -68,6 +65,11 @@ const Header = () => {
               About
             </Link>
           </li>
+          {currentUser && (
+            <button className='btn-secondary' onClick={handleLogout}>
+              Logout
+            </button>
+          )}
         </ul>
       </nav>
     </header>
