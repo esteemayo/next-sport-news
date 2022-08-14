@@ -5,7 +5,9 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Spinner } from '@/components/Spinner';
+import Spinner from '@/components/Spinner';
+import { registerInputs } from '../../data';
+import FormInput from '@/components/FormInput';
 import styles from '@/styles/AuthForm.module.css';
 import { registerUser, reset } from '@/features/auth/authSlice';
 
@@ -21,9 +23,7 @@ const Register = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const { user, isError, isSuccess, isLoading, message } = useSelector(
-    (state) => ({
-      ...state.auth,
-    })
+    (state) => ({ ...state.auth })
   );
 
   const [formData, setFormData] = useState(initialState);
@@ -63,49 +63,22 @@ const Register = () => {
     <>
       <div className={styles.auth}>
         <h1>
-          <FaUser /> Register
+          <FaUser /> Login
         </h1>
         <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor='name'>Name</label>
-            <input id='name' type='text' name='name' onChange={handleChange} />
-          </div>
-          <div>
-            <label htmlFor='username'>Username</label>
-            <input
-              id='username'
-              type='text'
-              name='username'
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <label htmlFor='email'>Email</label>
-            <input
-              id='email'
-              type='email'
-              name='email'
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <label htmlFor='password'>Password</label>
-            <input
-              id='password'
-              type='password'
-              name='password'
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <label htmlFor='passwordConfirm'>Confirm Password</label>
-            <input
-              id='passwordConfirm'
-              type='password'
-              name='passwordConfirm'
-              onChange={handleChange}
-            />
-          </div>
+          {registerInputs.map((input) => {
+            const { id, type, name, label, placeholder } = input;
+            return (
+              <FormInput
+                key={id}
+                type={type}
+                name={name}
+                label={label}
+                placeholder={placeholder}
+                onChange={handleChange}
+              />
+            );
+          })}
           <input type='submit' value='Register' className='btn' />
         </form>
         <p>
