@@ -18,15 +18,18 @@ const Login = () => {
     (state) => ({ ...state.auth })
   );
 
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
+  const [formData, setFormData] = useState(null);
+
+  const handleChange = ({ target: input }) => {
+    const { name, value } = input;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const credentials = {
-      email,
-      password,
+      ...formData,
     };
 
     dispatch(loginUser({ credentials, toast }));
@@ -58,7 +61,7 @@ const Login = () => {
                 name={name}
                 label={label}
                 placeholder={placeholder}
-                onChange={({ target }) => setEmail(target.value)}
+                onChange={handleChange}
               />
             );
           })}
