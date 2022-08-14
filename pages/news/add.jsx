@@ -42,14 +42,16 @@ const Add = () => {
     data.append('upload_preset', 'sports');
 
     try {
-      const res = await uploadImage(data);
-
-      const { url } = res.data;
-
       const newsData = {
         ...formData,
-        image: url,
       };
+
+      if (file) {
+        const res = await uploadImage(data);
+
+        const { url } = res.data;
+        newsData.image = url;
+      }
 
       const {
         data: { sport },
