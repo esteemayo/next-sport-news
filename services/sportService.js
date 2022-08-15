@@ -18,7 +18,12 @@ export const getUserSports = (accessToken) =>
     },
   });
 
-export const getSportById = (sportId) => http.get(sportUrl(sportId));
+export const getSportById = (sportId, accessToken) =>
+  http.get(sportUrl(sportId), {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
 
 export const getSportBySlug = (slug) =>
   http.get(`${apiEndpoint}/details/${slug}`);
