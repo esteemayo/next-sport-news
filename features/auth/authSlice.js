@@ -12,7 +12,7 @@ export const registerUser = createAsyncThunk(
       toast.success('Your account has been successfully created');
       return data;
     } catch (err) {
-      return rejectWithValue(err);
+      return rejectWithValue(err.response.data);
     }
   }
 );
@@ -25,7 +25,19 @@ export const loginUser = createAsyncThunk(
       toast.success('You are successfully logged in');
       return data;
     } catch (err) {
-      return rejectWithValue(err);
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
+export const logoutUser = createAsyncThunk(
+  'auth/logout',
+  async (_, { rejectWithValue }) => {
+    try {
+      await authAPI.nextLogout();
+      return;
+    } catch (err) {
+      rejectWithValue(err.response.data);
     }
   }
 );
@@ -103,6 +115,10 @@ export const authSlice = createSlice({
         state.isSuccess = false;
         state.isError = true;
         state.message = payload.message;
+        state.user = null;
+      })
+      .addCase(logoutUser.fulfilled, (state) => {
+        localStorage.clear();
         state.user = null;
       });
   },
