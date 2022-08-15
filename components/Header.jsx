@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Search from './Search';
 import styles from '@/styles/Header.module.css';
-import { setLogout } from '@/features/auth/authSlice';
+import { logoutUser } from '@/features/auth/authSlice';
 
 const Header = () => {
   const router = useRouter();
@@ -15,7 +15,7 @@ const Header = () => {
   const [currentUser, setCurrentUser] = useState(null);
 
   const handleLogout = () => {
-    dispatch(setLogout());
+    dispatch(logoutUser());
     router.push('/');
   };
 
