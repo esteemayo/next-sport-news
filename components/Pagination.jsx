@@ -7,12 +7,12 @@ const Pagination = ({ page, numberOfPages }) => {
     if (page === 1) {
       return (
         <>
-          <Link href={`/news?page=${page + 1}`}>
-            <a className='btn btn-secondary'>Next</a>
-          </Link>
           <small>
             Page {page} of {numberOfPages}
           </small>
+          <Link href={`/news?page=${page + 1}`}>
+            <a className='btn btn-secondary'>Next</a>
+          </Link>
         </>
       );
     } else if (page !== numberOfPages) {
