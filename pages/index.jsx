@@ -4,7 +4,7 @@ import Head from 'next/head';
 import NewsItem from '@/components/NewsItem';
 import { getSports } from '@/services/sportService';
 
-export default function Home({ news }) {
+const Home = ({ news }) => {
   return (
     <div>
       <Head>
@@ -24,7 +24,7 @@ export default function Home({ news }) {
       )}
     </div>
   );
-}
+};
 
 export const getStaticProps = async () => {
   const { data } = await getSports();
@@ -36,3 +36,5 @@ export const getStaticProps = async () => {
     revalidate: 1,
   };
 };
+
+export default Home;
