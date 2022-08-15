@@ -11,6 +11,8 @@ export const login = (credentials) =>
 export const nextLogin = (credentials) =>
   axios.post(`${apiUrl}/auth/login`, credentials);
 
+export const nextLogout = () => axios.post(`${apiUrl}/auth/logout`);
+
 export const getJwt = () => {
   if (typeof window !== 'undefined') {
     return JSON.parse(localStorage.getItem(tokenKey))?.token;
