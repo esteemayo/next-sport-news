@@ -10,9 +10,10 @@ import TextArea from '@/components/TextArea';
 import styles from '@/styles/Form.module.css';
 import FormInput from '@/components/FormInput';
 import ImageUpload from '@/components/ImageUpload';
+import { parseCookie } from '../../../utils/index';
 import { getSportById, updateSport } from '@/services/sportService';
 
-const EditNews = ({ news }) => {
+const EditNews = ({ news, token }) => {
   const router = useRouter();
 
   const [showModal, setShowModal] = useState(false);
@@ -51,7 +52,7 @@ const EditNews = ({ news }) => {
   };
 
   const imageUpload = async () => {
-    const { data } = await getSportById(news._id);
+    const { data } = await getSportById(news._id, token);
 
     setImagePreview(data.sport.image);
     setShowModal(false);
@@ -120,12 +121,23 @@ const EditNews = ({ news }) => {
   );
 };
 
-export const getServerSideProps = async ({ params: { id } }) => {
-  const { data } = await getSportById(id);
+export const getServerSideProps = async ({ req, params: { id } }) => {
+  const { accessToken } = parseCookie(req);
+
+  if (!accessToken) {
+    return {
+      redirect: {
+        destination: '/auth/login',
+        permanent: false,
+      },
+    };
+  }
+  const { data } = await getSportById(id, accessToken);
 
   return {
     props: {
       news: data.sport,
+      token: accessToken,
     },
   };
 };
