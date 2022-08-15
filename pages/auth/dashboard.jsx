@@ -35,7 +35,7 @@ const Dashboard = ({ news }) => {
 export const getServerSideProps = async ({ req }) => {
   const { accessToken } = parseCookie(req);
 
-  if (!accessToken) {
+  if (!accessToken || accessToken === 'deleted') {
     return {
       redirect: {
         destination: '/auth/login',
