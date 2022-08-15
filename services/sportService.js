@@ -6,7 +6,7 @@ const sportUrl = (sportId) => {
   return `${apiEndpoint}/${sportId}`;
 };
 
-export const getSports = () => http.get(apiEndpoint);
+export const getSports = (page) => http.get(`${apiEndpoint}?page=${page}`);
 
 export const searchSport = (query) =>
   http.get(`${apiEndpoint}/search?searchQuery=${query}`);
