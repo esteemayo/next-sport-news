@@ -31,7 +31,7 @@ export const getStaticProps = async () => {
 
   return {
     props: {
-      news: data.sports.slice(0, 5),
+      news: data.sports,
     },
     revalidate: 1,
   };
