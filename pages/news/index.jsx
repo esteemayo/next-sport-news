@@ -16,7 +16,9 @@ const News = ({ news, page, numberOfPages }) => {
       {news.map((item) => {
         return <NewsItem key={item._id} {...item} />;
       })}
-      <Pagination page={page} numberOfPages={numberOfPages} />
+      {news.length >= 5 && (
+        <Pagination page={page} numberOfPages={numberOfPages} />
+      )}
     </>
   );
 };
