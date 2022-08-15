@@ -2,11 +2,12 @@ import Link from 'next/link';
 
 import NewsItem from '@/components/NewsItem';
 import styles from '@/styles/News.module.css';
+import Pagination from '@/components/Pagination';
 import { getSports } from '@/services/sportService';
 
-const News = ({ news }) => {
+const News = ({ news, page, numberOfPages }) => {
   return (
-    <div>
+    <>
       <Link href='/'>
         <a className={styles.back}>Go Back</a>
       </Link>
@@ -15,16 +16,19 @@ const News = ({ news }) => {
       {news.map((item) => {
         return <NewsItem key={item._id} {...item} />;
       })}
-    </div>
+      <Pagination page={page} numberOfPages={numberOfPages} />
+    </>
   );
 };
 
-export const getServerSideProps = async () => {
-  const { data } = await getSports();
+export const getServerSideProps = async ({ query: { page } }) => {
+  const { data } = await getSports(page);
 
   return {
     props: {
       news: data.sports,
+      page: data.currentPage,
+      numberOfPages: data.numberOfPages,
     },
   };
 };
