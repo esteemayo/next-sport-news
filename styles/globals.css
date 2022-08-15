@@ -15,6 +15,7 @@ body {
 a {
   text-decoration: none;
   color: steelblue;
+  outline: none;
 }
 
 p {
@@ -37,6 +38,7 @@ button {
   cursor: pointer;
   border: 0;
   border-radius: 5px;
+  outline: none;
 }
 
 .btn-delete {
@@ -47,6 +49,7 @@ button {
   cursor: pointer;
   border: 0;
   border-radius: 5px;
+  outline: none;
 }
 
 .btn-edit {
@@ -57,10 +60,16 @@ button {
   cursor: pointer;
   border: 0;
   border-radius: 5px;
+  outline: none;
 }
 
-.btn:hover {
+.btn:hover,
+.btn-edit:hover {
   opacity: 0.9;
+}
+
+.btn-delete:hover {
+  opacity: 0.7;
 }
 
 .btn-secondary {
