@@ -1,6 +1,7 @@
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
 
+import Meta from '@/components/Meta';
 import { parseCookie } from '../../utils';
 import NewsDashboard from '@/components/NewsDashboard';
 import { deleteSport, getUserSports } from '@/services/sportService';
@@ -20,7 +21,8 @@ const Dashboard = ({ news }) => {
     }
   };
   return (
-    <div>
+    <>
+      <Meta title='Dashboard' />
       <h1>Dashboard</h1>
       <h3>My News</h3>
       {news.map((item) => {
@@ -28,7 +30,7 @@ const Dashboard = ({ news }) => {
           <NewsDashboard key={item._id} {...item} onDelete={handleDelete} />
         );
       })}
-    </div>
+    </>
   );
 };
 

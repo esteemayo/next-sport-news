@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
+import Meta from '@/components/Meta';
 import NewsItem from '@/components/NewsItem';
 import styles from '@/styles/News.module.css';
 import { searchSport } from '@/services/sportService';
@@ -10,6 +11,7 @@ const SearchPage = ({ news }) => {
 
   return (
     <>
+      <Meta title='Search Results' />
       <h1>Search Results for {query.searchQuery}</h1>
       {news.length === 0 && <h3>No search result for {query.searchQuery}</h3>}
       {news.map((item) => {

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
 
+import Meta from '@/components/Meta';
 import { addInputs } from '../../data';
 import TextArea from '@/components/TextArea';
 import styles from '@/styles/Form.module.css';
@@ -65,6 +66,7 @@ const Add = () => {
 
   return (
     <>
+      <Meta title='Add New Sport News' />
       <Link href='/news' passHref>
         Go Back
       </Link>

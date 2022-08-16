@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import Meta from '@/components/Meta';
 import { loginInputs } from '../../data';
 import Spinner from '@/components/Spinner';
 import FormInput from '@/components/FormInput';
@@ -47,6 +48,7 @@ const Login = () => {
 
   return (
     <>
+      <Meta title='User Login' />
       <div className={styles.auth}>
         <h1>
           <FaUser /> Login

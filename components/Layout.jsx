@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import { ToastContainer } from 'react-toastify';
 
 import Hero from './Hero';
+import Meta from './Meta';
 import Footer from './Footer';
 import Header from './Header';
 
@@ -13,6 +14,7 @@ const Layout = ({ children }) => {
 
   return (
     <div>
+      <Meta />
       <Header />
       <ToastContainer />
       {pathname === '/' && <Hero />}

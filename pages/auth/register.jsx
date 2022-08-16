@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import Meta from '@/components/Meta';
 import Spinner from '@/components/Spinner';
 import { registerInputs } from '../../data';
 import FormInput from '@/components/FormInput';
@@ -61,6 +62,7 @@ const Register = () => {
 
   return (
     <>
+      <Meta title='User Register' />
       <div className={styles.auth}>
         <h1>
           <FaUser /> Login

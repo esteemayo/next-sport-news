@@ -5,12 +5,13 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
 
+import Meta from '@/components/Meta';
 import Modal from '@/components/Modal';
+import { parseCookie } from '@/utils/index';
 import TextArea from '@/components/TextArea';
 import styles from '@/styles/Form.module.css';
 import FormInput from '@/components/FormInput';
 import ImageUpload from '@/components/ImageUpload';
-import { parseCookie } from '../../../utils/index';
 import { getSportById, updateSport } from '@/services/sportService';
 
 const EditNews = ({ news, token }) => {
@@ -60,6 +61,7 @@ const EditNews = ({ news, token }) => {
 
   return (
     <>
+      <Meta title='Edit Sport News' />
       <Link href={`/news/${news.slug}`} passHref>
         Go Back
       </Link>
