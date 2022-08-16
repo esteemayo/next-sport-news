@@ -2,7 +2,7 @@ import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
 
 import Meta from '@/components/Meta';
-import { parseCookie } from '../../utils';
+import { parseCookie } from '@/utils/index';
 import NewsDashboard from '@/components/NewsDashboard';
 import { deleteSport, getUserSports } from '@/services/sportService';
 
@@ -37,7 +37,7 @@ const Dashboard = ({ news }) => {
 export const getServerSideProps = async ({ req }) => {
   const { accessToken } = parseCookie(req);
 
-  if (!accessToken || accessToken === 'deleted') {
+  if (!accessToken || accessToken === '') {
     return {
       redirect: {
         destination: '/auth/login',

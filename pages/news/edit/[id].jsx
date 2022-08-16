@@ -126,7 +126,7 @@ const EditNews = ({ news, token }) => {
 export const getServerSideProps = async ({ req, params: { id } }) => {
   const { accessToken } = parseCookie(req);
 
-  if (!accessToken || accessToken === 'deleted') {
+  if (!accessToken || accessToken === '') {
     return {
       redirect: {
         destination: '/auth/login',

@@ -6,6 +6,7 @@
   border-radius: 5px;
   outline: none;
   caret-color: darkslategrey;
+  backface-visibility: hidden;
   transition: all 0.5s ease-in-out;
 }
 

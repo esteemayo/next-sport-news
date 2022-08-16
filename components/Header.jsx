@@ -38,7 +38,7 @@ const Header = () => {
               News
             </Link>
           </li>
-          {currentUser ? (
+          {currentUser && (
             <>
               <li>
                 <Link href='/news/add' passHref>
@@ -51,21 +51,19 @@ const Header = () => {
                 </Link>
               </li>
             </>
-          ) : (
-            <>
-              <li>
-                <Link href='/auth/login'>
-                  <a className='btn-secondary'>Login</a>
-                </Link>
-              </li>
-            </>
           )}
           <li>
             <Link href='/about' passHref>
               About
             </Link>
           </li>
-          {currentUser && (
+          {!currentUser ? (
+            <li>
+              <Link href='/auth/login'>
+                <a className='btn-secondary'>Login</a>
+              </Link>
+            </li>
+          ) : (
             <button className='btn-secondary' onClick={handleLogout}>
               Logout
             </button>
