@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Head from 'next/head';
 
 import NewsItem from '@/components/NewsItem';
 import { getSports } from '@/services/sportService';
