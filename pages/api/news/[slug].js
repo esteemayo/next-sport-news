@@ -8,7 +8,14 @@ const handler = (req, res) => {
 
   if (method === 'GET') {
     const newsArticle = news.find((item) => item.slug === slug);
-    res.status(200).json(newsArticle);
+
+    if (newsArticle.length > 0) {
+      res.status(200).json(newsArticle);
+    } else {
+      res
+        .status(404)
+        .json({ message: `No news found with that SLUG →→→ ${slug}` });
+    }
   } else {
     res.setHeader('Allow', ['GET']);
     res.status(405).json({ message: `Method ${method} not allowed` });
