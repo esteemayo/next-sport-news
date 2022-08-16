@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Meta from '@/components/Meta';
 import { loginInputs } from '../../data';
 import Spinner from '@/components/Spinner';
+import { parseCookie } from '@/utils/index';
 import FormInput from '@/components/FormInput';
 import styles from '@/styles/AuthForm.module.css';
 import { loginUser, reset } from '@/features/auth/authSlice';
@@ -78,6 +79,23 @@ const Login = () => {
       </div>
     </>
   );
+};
+
+export const getServerSideProps = ({ req }) => {
+  const { accessToken } = parseCookie(req);
+
+  if (accessToken) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
 };
 
 export default Login;

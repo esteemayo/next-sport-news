@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Meta from '@/components/Meta';
 import Spinner from '@/components/Spinner';
+import { parseCookie } from '@/utils/index';
 import { registerInputs } from '../../data';
 import FormInput from '@/components/FormInput';
 import styles from '@/styles/AuthForm.module.css';
@@ -65,7 +66,7 @@ const Register = () => {
       <Meta title='User Register' />
       <div className={styles.auth}>
         <h1>
-          <FaUser /> Login
+          <FaUser /> Register
         </h1>
         <form onSubmit={handleSubmit}>
           {registerInputs.map((input) => {
@@ -92,6 +93,23 @@ const Register = () => {
       </div>
     </>
   );
+};
+
+export const getServerSideProps = ({ req }) => {
+  const { accessToken } = parseCookie(req);
+
+  if (accessToken) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
 };
 
 export default Register;
