@@ -1,10 +1,13 @@
+import { lazy, Suspense } from 'react';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
 
 import Meta from '@/components/Meta';
+import Spinner from '@/components/Spinner';
 import { parseCookie } from '@/utils/index';
-import NewsDashboard from '@/components/NewsDashboard';
 import { deleteSport, getUserSports } from '@/services/sportService';
+
+const NewsDashboard = lazy(() => import('@/components/NewsDashboard'));
 
 const Dashboard = ({ news }) => {
   const router = useRouter();
@@ -25,11 +28,13 @@ const Dashboard = ({ news }) => {
       <Meta title='Dashboard' />
       <h1>Dashboard</h1>
       <h3>My News</h3>
-      {news.map((item) => {
-        return (
-          <NewsDashboard key={item._id} {...item} onDelete={handleDelete} />
-        );
-      })}
+      <Suspense fallback={<Spinner />}>
+        {news.map((item) => {
+          return (
+            <NewsDashboard key={item._id} {...item} onDelete={handleDelete} />
+          );
+        })}
+      </Suspense>
     </>
   );
 };

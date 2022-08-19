@@ -1,9 +1,13 @@
 import Link from 'next/link';
+import { lazy, Suspense } from 'react';
 
-import NewsItem from '@/components/NewsItem';
-import styles from '@/styles/News.module.css';
+import Spinner from '@/components/Spinner';
 import Pagination from '@/components/Pagination';
 import { getSports } from '@/services/sportService';
+
+import styles from '@/styles/News.module.css';
+
+const NewsItem = lazy(() => import('@/components/NewsItem'));
 
 const News = ({ news, page, numberOfPages }) => {
   return (
@@ -13,9 +17,11 @@ const News = ({ news, page, numberOfPages }) => {
       </Link>
       <h1>News</h1>
       {news.length === 0 && <h3>No News</h3>}
-      {news.map((item) => {
-        return <NewsItem key={item._id} {...item} />;
-      })}
+      <Suspense fallback={<Spinner />}>
+        {news.map((item) => {
+          return <NewsItem key={item._id} {...item} />;
+        })}
+      </Suspense>
       {<Pagination page={page} numberOfPages={numberOfPages} />}
     </>
   );
