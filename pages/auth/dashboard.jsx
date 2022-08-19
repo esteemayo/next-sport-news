@@ -14,15 +14,14 @@ const Dashboard = ({ news }) => {
 
   const handleDelete = async (id) => {
     try {
-      if (window.confirm('Are you sure that you wanted to delete news?')) {
-        await deleteSport(id);
-        router.push('/news');
-      }
+      await deleteSport(id);
+      router.push('/news');
     } catch (err) {
       toast.error(err.response.data.message);
       console.log(err);
     }
   };
+
   return (
     <>
       <Meta title='Dashboard' />
