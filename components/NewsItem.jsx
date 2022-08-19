@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import Moment from 'react-moment';
+import PropTypes from 'prop-types';
 import { FaUser } from 'react-icons/fa';
 
 import styles from '@/styles/NewsItem.module.css';
@@ -32,6 +33,15 @@ const NewsItem = ({ name, slug, date, time, user, image }) => {
       </div>
     </div>
   );
+};
+
+NewsItem.propTypes = {
+  name: PropTypes.string.isRequired,
+  slug: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  time: PropTypes.string.isRequired,
+  user: PropTypes.object.isRequired,
+  image: PropTypes.string.isRequired,
 };
 
 export default NewsItem;
