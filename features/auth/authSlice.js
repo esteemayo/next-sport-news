@@ -3,6 +3,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import * as authAPI from '@/services/authService';
 import { nextRegister } from '@/services/userService';
+import { getFromStorage, setToStorage, tokenKey } from '@/utils/index';
 
 export const registerUser = createAsyncThunk(
   'auth/register',
@@ -42,13 +43,8 @@ export const logoutUser = createAsyncThunk(
   }
 );
 
-let user;
-const tokenKey = 'accessToken';
 const token = authAPI.getJwt();
-
-if (typeof window !== 'undefined') {
-  user = JSON.parse(localStorage.getItem(tokenKey));
-}
+const user = getFromStorage(tokenKey);
 
 const initialState = {
   user: user ?? null,
@@ -91,7 +87,7 @@ export const authSlice = createSlice({
       .addCase(registerUser.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.isSuccess = true;
-        localStorage.setItem(tokenKey, JSON.stringify(payload));
+        setToStorage(tokenKey, payload);
         state.user = payload;
       })
       .addCase(registerUser.rejected, (state, { payload }) => {
@@ -107,7 +103,7 @@ export const authSlice = createSlice({
       .addCase(loginUser.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.isSuccess = true;
-        localStorage.setItem(tokenKey, JSON.stringify(payload));
+        setToStorage(tokenKey, payload);
         state.user = payload;
       })
       .addCase(loginUser.rejected, (state, { payload }) => {

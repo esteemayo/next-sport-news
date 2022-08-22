@@ -1,8 +1,9 @@
 import axios from 'axios';
+
 import http from './httpService';
+import { getFromStorage, tokenKey } from '@/utils/index';
 
 const apiEndpoint = '/auth';
-const tokenKey = 'accessToken';
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 export const login = (credentials) =>
@@ -13,8 +14,4 @@ export const nextLogin = (credentials) =>
 
 export const nextLogout = () => axios.post(`${apiUrl}/auth/logout`);
 
-export const getJwt = () => {
-  if (typeof window !== 'undefined') {
-    return JSON.parse(localStorage.getItem(tokenKey))?.token;
-  }
-};
+export const getJwt = () => getFromStorage(tokenKey)?.token;
