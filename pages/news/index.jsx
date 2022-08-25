@@ -22,7 +22,7 @@ const News = ({ news, page, numberOfPages }) => {
           return <NewsItem key={item._id} {...item} />;
         })}
       </Suspense>
-      {<Pagination page={page} numberOfPages={numberOfPages} />}
+      <Pagination page={page} numberOfPages={numberOfPages} />
     </>
   );
 };
