@@ -18,7 +18,7 @@
 }
 
 .overlay {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -27,5 +27,7 @@
   justify-content: center;
   align-items: center;
   background: center;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   background-color: rgba(0, 0, 0, 0.7);
 }
