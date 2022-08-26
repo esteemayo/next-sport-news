@@ -134,6 +134,7 @@ export const getServerSideProps = async ({ req, params: { id } }) => {
       },
     };
   }
+
   const { data } = await getSportById(id, accessToken);
 
   return {
