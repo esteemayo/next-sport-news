@@ -24,9 +24,7 @@ const EditNews = ({ news, token }) => {
     date: news.date,
     time: news.time,
   });
-  const [imagePreview, setImagePreview] = useState(
-    news.image ? news.image : null
-  );
+  const [imagePreview, setImagePreview] = useState(news.image ?? null);
 
   const { name, detail, date, time } = formData;
 
@@ -99,7 +97,13 @@ const EditNews = ({ news, token }) => {
         <input type='submit' value='Update News' className='btn' />
       </form>
       {imagePreview ? (
-        <Image src={imagePreview} width={180} height={100} alt={news.name} />
+        <Image
+          src={imagePreview}
+          width={180}
+          height={100}
+          objectFit='cover'
+          alt={news.name}
+        />
       ) : (
         <div>
           <p>No Image Available</p>

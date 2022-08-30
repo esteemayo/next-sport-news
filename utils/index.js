@@ -16,3 +16,16 @@ export const setToStorage = (key, value) => {
     return window.localStorage.setItem(key, JSON.stringify(value));
   }
 };
+
+export const removeFromStorage = () => {
+  if (typeof window !== 'undefined') {
+    return window.localStorage.clear();
+  }
+};
+
+export const excerpts = (str, count) => {
+  if (str.length > count) {
+    str = str.substr(0, count) + ' ...';
+  }
+  return str;
+};
