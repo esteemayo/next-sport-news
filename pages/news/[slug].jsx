@@ -4,6 +4,7 @@ import Moment from 'react-moment';
 import { FaUser } from 'react-icons/fa';
 
 import Meta from '@/components/Meta';
+import { excerpts } from '@/utils/index';
 import styles from '@/styles/News.module.css';
 import * as sportAPI from '@/services/sportService';
 import DisqusThread from '@/components/DisqusThread';
@@ -19,7 +20,7 @@ const SingleNews = ({ news }) => {
 
   return (
     <>
-      <Meta title={news.name} />
+      <Meta title={news.name} description={excerpts(news.detail, 100)} />
       <div className={styles.news}>
         <Link href='/news'>
           <a className={styles.back}>Go Back</a>

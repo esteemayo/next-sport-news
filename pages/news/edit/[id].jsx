@@ -7,11 +7,11 @@ import { useRouter } from 'next/router';
 
 import Meta from '@/components/Meta';
 import Modal from '@/components/Modal';
-import { parseCookie } from '@/utils/index';
 import TextArea from '@/components/TextArea';
 import styles from '@/styles/Form.module.css';
 import FormInput from '@/components/FormInput';
 import ImageUpload from '@/components/ImageUpload';
+import { excerpts, parseCookie } from '@/utils/index';
 import { getSportById, updateSport } from '@/services/sportService';
 
 const EditNews = ({ news, token }) => {
@@ -59,7 +59,7 @@ const EditNews = ({ news, token }) => {
 
   return (
     <>
-      <Meta title='Edit Sport News' />
+      <Meta title='Edit Sport News' description={excerpts(news.detail, 100)} />
       <Link href={`/news/${news.slug}`} passHref>
         Go Back
       </Link>
